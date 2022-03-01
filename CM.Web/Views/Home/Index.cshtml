@@ -2,7 +2,33 @@
     ViewData["Title"] = "Solid Consultant Managment";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@model IEnumerable<AssignmentProcessDto>
+<form>
+
+    <div class="container row">
+
+        @foreach (var assignment in Model)
+        {
+            <div class="col-4 ">
+                <div class="p-0 my-3 border">
+                    <div class="card">
+                        <h3 class="card-title text-success">@assignment.Customer</h3>
+                        <div class="card-body">
+                            <h2 class="card-title text-success">@assignment.Title</h2>
+                            <span class="badge badge-light mb-2 ">@assignment.Brocker</span>
+                            <div class="row">
+                                <div class="col">
+                                    <a asp-action="Details" asp-route-assignmentProcessId="@assignment.AssignmentProcessId"
+                                   class="btn btn-success form-control">Details</a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</form>

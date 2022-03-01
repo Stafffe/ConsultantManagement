@@ -1,6 +1,8 @@
 ﻿using CM.Web.Models;
+using CM.Web.Services.IServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace CM.Web.Controllers
@@ -8,15 +10,34 @@ namespace CM.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IAssignmentProcessService processService; 
+        public HomeController(ILogger<HomeController> logger, IAssignmentProcessService assignmentProcessService)
         {
             _logger = logger;
+            processService=assignmentProcessService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            List<AssignmentProcessDto> list = new();
+            var response = await processService.GetAllAssignmentProcessesAsync<ResponseDto>();
+            if (response != null && response.IsSuccess)
+            {
+                list = JsonConvert.DeserializeObject<List<AssignmentProcessDto>>(Convert.ToString(response.Result));
+            }
+            return View(list);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Details(Guid assignmentProcessId)
+        {
+            AssignmentProcessDto assignment = new();
+            var response = await processService.GetAssignmentProcessByIdAsync<ResponseDto>(assignmentProcessId);
+            if (response != null && response.IsSuccess)
+            {
+                assignment = JsonConvert.DeserializeObject<AssignmentProcessDto>(Convert.ToString(response.Result));
+            }
+            return View(assignment);
         }
 
         public IActionResult Privacy()
