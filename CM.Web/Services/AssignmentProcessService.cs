@@ -18,7 +18,7 @@ namespace CM.Web.Services
             {
                 ApiType = SD.ApiType.POST,
                 Data = assignmentProcessDto,
-                Url = SD.AssignmentProcessAPIBase + "/api/products",
+                Url = SD.AssignmentProcessAPIBase + "/api/AssignmentProcess",
             });
         }
 
@@ -27,7 +27,7 @@ namespace CM.Web.Services
             return await this.SendAsync<T>(new ApiRequest()
             {
                 ApiType = SD.ApiType.DELETE,
-                Url = SD.AssignmentProcessAPIBase + "/api/products/"+id,
+                Url = SD.AssignmentProcessAPIBase + "/api/AssignmentProcess/" + id,
             });
         }
 

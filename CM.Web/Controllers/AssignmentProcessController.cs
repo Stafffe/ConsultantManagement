@@ -1,5 +1,6 @@
 ﻿using CM.Web.Models;
 using CM.Web.Services.IServices;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -23,6 +24,7 @@ namespace CM.Web.Controllers
             }
             return View(list);
         }
+ 
         public async Task<IActionResult> AssignmentProcessCreate()
         {
             return View();
