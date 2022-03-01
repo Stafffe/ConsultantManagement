@@ -24,11 +24,12 @@ namespace CM.Web.Controllers
             }
             return View(list);
         }
- 
+        [Authorize]
         public async Task<IActionResult> AssignmentProcessCreate()
         {
             return View();
         }
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AssignmentProcessCreate(AssignmentProcessDto model)
@@ -43,6 +44,7 @@ namespace CM.Web.Controllers
             }
             return View(model);
         }
+        [Authorize]
         public async Task<IActionResult> AssignmentProcessEdit(Guid assignmentProcessId)
         {
             var response = await _assignmentProcessService.GetAssignmentProcessByIdAsync<ResponseDto>(assignmentProcessId);
@@ -53,6 +55,7 @@ namespace CM.Web.Controllers
             }
             return NotFound();
         }
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AssignmentProcessEdit(AssignmentProcessDto model)
@@ -67,7 +70,7 @@ namespace CM.Web.Controllers
             }
             return View(model);
         }
-
+        [Authorize]
         public async Task<IActionResult> AssignmentProcessDelete(Guid assignmentProcessId)
         {
             var response = await _assignmentProcessService.GetAssignmentProcessByIdAsync<ResponseDto>(assignmentProcessId);
@@ -79,6 +82,7 @@ namespace CM.Web.Controllers
             return NotFound();
         }
         [HttpPost]
+        [Authorize ]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AssignmentProcessDelete(AssignmentProcessDto model)
         {
