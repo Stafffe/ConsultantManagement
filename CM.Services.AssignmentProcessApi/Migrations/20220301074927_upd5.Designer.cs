@@ -4,6 +4,7 @@ using CM.Services.AssignmentProcessApi.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CM.Services.AssignmentProcessApi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220301074927_upd5")]
+    partial class upd5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,21 +31,27 @@ namespace CM.Services.AssignmentProcessApi.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Action")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Brocker")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Consultant")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Customer")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Length")
@@ -53,6 +61,7 @@ namespace CM.Services.AssignmentProcessApi.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Status")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -66,7 +75,7 @@ namespace CM.Services.AssignmentProcessApi.Migrations
                     b.HasData(
                         new
                         {
-                            AssignmentProcessId = new Guid("804ce16c-37fa-4401-a7b6-5ce00145d256"),
+                            AssignmentProcessId = new Guid("5965fa55-95b3-4047-8a8e-0cf22adf5daa"),
                             Action = "",
                             Brocker = "Nikita",
                             Consultant = "NV",
@@ -74,7 +83,7 @@ namespace CM.Services.AssignmentProcessApi.Migrations
                             Description = "DEscription come here",
                             ImageUrl = "https://dotnetmastery.blob.core.windows.net/mango/14.jpg",
                             Length = 0,
-                            StartDate = new DateTime(2022, 6, 1, 10, 37, 40, 903, DateTimeKind.Local).AddTicks(2563),
+                            StartDate = new DateTime(2022, 6, 1, 8, 49, 26, 901, DateTimeKind.Local).AddTicks(142),
                             Status = "Submitted",
                             Title = "BackEnd"
                         });
